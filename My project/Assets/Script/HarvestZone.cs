@@ -24,6 +24,8 @@ public class HarvestZone : MonoBehaviour
 
     private GameObject coinsInstance;
 
+    private GameObject Player;
+
     
     private void Awake()
     {
@@ -47,7 +49,7 @@ public class HarvestZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         harvestingBar.SetActive(true);
-        
+        Player = other.gameObject;
         Debug.Log(other.gameObject.name);
         if (other.CompareTag("Character"))
         {
