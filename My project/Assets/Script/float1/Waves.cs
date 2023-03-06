@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Waves : MonoBehaviour
 {
 
-    public int Dimension = 10;
-    public float UVScale = 2f;
+    private int Dimension = 10;
+    private float UVScale = 2f;
     public Octave[] Octaves;
 
     protected MeshFilter MeshFilter;
@@ -24,9 +25,9 @@ public class Waves : MonoBehaviour
         Mesh.uv = GenerateUVs();
         Mesh.RecalculateNormals();
         Mesh.RecalculateBounds();
-
-        MeshFilter = gameObject.AddComponent<MeshFilter>();
-        MeshFilter.mesh = Mesh;
+        
+        //MeshFilter = gameObject.AddComponent<MeshFilter>();
+        //MeshFilter.mesh = Mesh;
     }
 
     public float GetHeight(Vector3 position)
@@ -157,9 +158,10 @@ public class Waves : MonoBehaviour
     [Serializable]
     public struct Octave
     {
-        public Vector2 speed;
+        public Vector2 speed ;
         public Vector2 scale;
         public float height;
         public bool alternate;
     }
+    
 }

@@ -12,7 +12,7 @@ public class ItemData : ScriptableObject
 
     private void Awake()
     {
-        stackSize= 0;
+        stackSize = 0;
     }
 
 
