@@ -18,5 +18,6 @@ public class Player : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontal, 0, vertical);
         transform.Translate(movement * speed * Time.deltaTime);
+        transform.Rotate(new Vector3(0, horizontal, 0) * speed * Time.deltaTime);
     }
 }
