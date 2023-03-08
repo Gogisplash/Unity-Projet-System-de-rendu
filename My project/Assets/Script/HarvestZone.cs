@@ -18,26 +18,31 @@ public class HarvestZone : MonoBehaviour
 
     int coinsInside;
 
-    public GameObject coinsPrefab;
+    public GameObject chestPrefab;
 
-    private Objectif coinsData;
+    private Objectif chestData;
 
-    private GameObject coinsInstance;
+    private GameObject chestInstance;
 
     private GameObject Player;
 
+    
     
     private void Awake()
     {
         harvestingProgresse = 0;
         harvestingBar = GameObject.Find("HarvestingBar");
         harvestingSlider = harvestingBar.GetComponent<SliderController>();
-        coinsData = coinsPrefab.GetComponent<Objectif>();
+        chestData = chestPrefab.GetComponentInChildren<Objectif>();
         coinsInside = Random.Range(1, 100);
     }
     private void Start()
     {
-        coinsData.SetStackSize(coinsInside);
+        Debug.Log(chestData);
+        bool inInventory = InventoryManager.Instance.inventory.IsinInventory(chestData.FirstobjectifData);
+        chestData.SetStackSize(coinsInside, inInventory);
+        
+        
         harvestingBar.SetActive(false);
     }
 
@@ -72,15 +77,16 @@ public class HarvestZone : MonoBehaviour
         if(Harvesting)
         {
             harvestingProgresse += 0.1f;
-            Debug.Log("fdp");
+            
         }
         harvestingSlider.SetSlider(harvestingProgresse);
 
         if (harvestingProgresse >= 100)
         {
-            coinsInstance = Instantiate(coinsPrefab);
-            coinsInstance.transform.position = transform.position;
-            Destroy(gameObject);
+            chestInstance = Instantiate(chestPrefab);
+            chestInstance.transform.position = transform.position;
+            
+            gameObject.SetActive(false);
         }
 
     }

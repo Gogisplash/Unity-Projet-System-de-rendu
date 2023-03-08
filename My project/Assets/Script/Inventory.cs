@@ -20,21 +20,19 @@ public class Inventory : MonoBehaviour
     }
     public void AddToInventory(ItemData itemAdded)
     {
+      
        foreach (ItemData item in inventory)
         {
-            if (item == itemAdded)
+            if(item.itemName == itemAdded.itemName)
             {
-                item.AddToStack();
+                item.AddToStack(itemAdded.stackSize);
                 OnInventoryChange?.Invoke(inventory);
             }
-          
         }
-       if(inventory.Contains(itemAdded) == false)
+       if(!IsinInventory(itemAdded))
         {
-
+            
             inventory.Add(itemAdded);
-            itemAdded.AddToStack();
-
             OnInventoryChange?.Invoke(inventory);
         }
         
@@ -45,9 +43,9 @@ public class Inventory : MonoBehaviour
     {
         foreach(ItemData item in inventory)
         {
-            if (inventory.Contains(item))
+            if (IsinInventory(item))
             {
-                item.RemoveFromStack();
+                item.RemoveFromStack(itemRemoved.stackSize);
                 if(item.stackSize == 0)
                 {
                     inventory.Remove(item);
@@ -65,6 +63,17 @@ public class Inventory : MonoBehaviour
         
     }
 
-    
+    public bool IsinInventory(ItemData item )
+    {
+        bool inInventory = false;
+        foreach(ItemData i in inventory)
+        {
+            if(i.itemName == item.itemName) 
+            { 
+                inInventory = true;
+            }
+        }
+        return inInventory;
+    }
 
 }

@@ -33,7 +33,7 @@ public class BoatController : MonoBehaviour
         if(rb.velocity.magnitude < maxSpeed)
         {
             rb.AddForce(movement);
-            Debug.Log(rb.velocity.magnitude);
+            //Debug.Log(rb.velocity.magnitude);
         }
        
         

@@ -7,7 +7,8 @@ public class Objectif : Collectible
     // Start is called before the first frame update
     
     
-    public ItemData objectifData;
+    public ItemData FirstobjectifData;
+    public ItemData secondObjectData;
  
     void Start()
     {
@@ -24,16 +25,36 @@ public class Objectif : Collectible
     {
         
         base.Interact();
-        InventoryManager.Instance.inventory.AddToInventory(objectifData);
+     
         
+        if(InventoryManager.Instance.inventory.IsinInventory(FirstobjectifData)) 
+        {
+            InventoryManager.Instance.inventory.AddToInventory(secondObjectData);
+        }
+        else
+        {
+            InventoryManager.Instance.inventory.AddToInventory(FirstobjectifData);
+
+        }
+
         SpawnObjectif.Instance.Spawn();
        
        
         
     }
-    public void SetStackSize(int size)
+    public void SetStackSize(int size, bool isStart)
     {
-        objectifData.stackSize = size;
+       if(!isStart)
+        {
+            FirstobjectifData.stackSize = size;
+        }
+        else
+        {
+            secondObjectData.stackSize = size;
+            
+        }
+        
     }
+
    
 }

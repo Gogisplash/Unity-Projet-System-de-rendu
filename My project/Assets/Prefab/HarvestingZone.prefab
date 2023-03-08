@@ -113,5 +113,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneSize: {x: 0, y: 0, z: 0}
   harvestingBar: {fileID: 0}
-  coinsPrefab: {fileID: 4032101617562855917, guid: dfe4c1995a6447e4da7fff412daaa81b,
+  chestPrefab: {fileID: 4661996237296695252, guid: e9dd427c175aa774e9f0e6d491bb9522,
     type: 3}

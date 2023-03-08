@@ -34,7 +34,7 @@ public class WaterFloat : MonoBehaviour
   
         Waves = FindObjectOfType<Waves>();
         Rigidbody = GetComponent<Rigidbody>();
-        Rigidbody.useGravity = false;
+        
 
  
         WaterLinePoints = new Vector3[FloatPoints.Length];

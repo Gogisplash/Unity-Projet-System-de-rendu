@@ -11,7 +11,8 @@ public class InventoryManager : Singleton<InventoryManager>
 
     public int inventorySize;
     public GameObject slotPrefab;
-    
+
+    public Image inventoryBar;
     
     public List<InventorySlot> inventorySlots = new List<InventorySlot>(5);
 
@@ -26,7 +27,7 @@ public class InventoryManager : Singleton<InventoryManager>
     void ResetInventory()
     {
        
-        foreach(Transform childTransform in transform)
+        foreach(Transform childTransform in inventoryBar.transform)
         {
            
             Destroy(childTransform.gameObject);
@@ -51,7 +52,7 @@ public class InventoryManager : Singleton<InventoryManager>
     void CreateInventorySlot()
     {
         GameObject newSlot = Instantiate(slotPrefab);   
-        newSlot.transform.SetParent(transform,false);
+        newSlot.transform.SetParent(inventoryBar.transform,false);
 
         InventorySlot newSlotComponent = newSlot.GetComponent<InventorySlot>();
         newSlotComponent.ClearSlot();

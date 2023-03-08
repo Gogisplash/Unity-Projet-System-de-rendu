@@ -16,12 +16,14 @@ public class ItemData : ScriptableObject
     }
 
 
-    public void AddToStack()
+    public void AddToStack(int added)
     {
-        stackSize++;
+        Debug.Log("ajouter " + added);
+        stackSize += added;
+       
     }
-    public void RemoveFromStack()
+    public void RemoveFromStack(int removed)
     {
-        stackSize--;
+        stackSize -= removed;
     }
 }
