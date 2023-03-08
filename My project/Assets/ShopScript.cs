@@ -12,24 +12,22 @@ public class ShopScript : MonoBehaviour
     public int maxHealth, maxSpeed;
 
     int currentHealth, currentSpeed;
-    int cash;
+    
 
     public Text cashText;
 
+    public GameObject player;
+    BoatStat boatStat;
+    int coins = 0;
     // Start is called before the first frame update
     void Start()
     {
-        SetDefs();
-    }
+        
+        cashText.text = coins + "$";
+        boatStat = player.GetComponentInChildren<BoatStat>();
 
-    void SetDefs()
-    {
-
-        cash = 1000;
-        cashText.text = cash + "$";
-
-        currentHealth =  PlayerPrefs.GetInt("health",0);
-        currentSpeed = PlayerPrefs.GetInt("speed", 0);
+        currentHealth = boatStat.m_health;
+        currentSpeed = boatStat.m_speed;
 
         healthSlider.maxValue = maxHealth;
         speedSlider.maxValue = maxSpeed;
@@ -42,12 +40,13 @@ public class ShopScript : MonoBehaviour
     {
         if (currentHealth < maxHealth)
         {
-            if (cash > price)
+            if (coins > price)
             {
-                cash -= price;
-                cashText.text = cash + "$";
+                InventoryManager.Instance.inventory.GetCoins().RemoveFromStack(price);
+                
+                
                 currentHealth += 5;
-                PlayerPrefs.SetInt("health", currentHealth);
+                boatStat.SetHealth(currentHealth);  
                 healthSlider.value = currentHealth;
                 Debug.Log("health up");
             }
@@ -66,12 +65,12 @@ public class ShopScript : MonoBehaviour
     {
         if (currentSpeed < maxSpeed)
         {
-            if (cash > price)
+            if (coins > price)
             {
-                cash -= price;
-                cashText.text = cash + "$";
+                InventoryManager.Instance.inventory.GetCoins().RemoveFromStack(price);
+
                 currentSpeed += 10;
-                PlayerPrefs.SetInt("speed", currentSpeed);
+                boatStat.SetSpeed(currentSpeed);
                 speedSlider.value = currentSpeed;
                 Debug.Log("Speed up");
             }
@@ -88,9 +87,12 @@ public class ShopScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(InventoryManager.Instance.inventory.GetCoins() != null)
         {
-            PlayerPrefs.DeleteAll();
+            coins = InventoryManager.Instance.inventory.GetCoins().stackSize;
         }
+        
+        cashText.text = coins +"$";
+        
     }
 }

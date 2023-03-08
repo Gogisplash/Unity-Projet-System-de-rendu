@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Inventory : MonoBehaviour
     //private Dictionary<ItemData, InventoryItem> itemDictionary = new Dictionary<ItemData, InventoryItem>();
 
     public static event Action<List<ItemData>> OnInventoryChange;
-
+    ItemData coins;
     private void Start()
     {
         inventory.Clear();
@@ -74,6 +75,19 @@ public class Inventory : MonoBehaviour
             }
         }
         return inInventory;
+    }
+
+    public ItemData GetCoins()
+    {
+        
+        foreach (ItemData i in inventory)
+        {
+            if (i.itemName == "Gold Coins")
+            {
+                coins = i;
+            }
+        }
+        return coins;
     }
 
 }
