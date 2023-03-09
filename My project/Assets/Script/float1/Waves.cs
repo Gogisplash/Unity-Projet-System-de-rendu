@@ -25,7 +25,7 @@ public class Waves : MonoBehaviour
         Mesh.uv = GenerateUVs();
         Mesh.RecalculateNormals();
         Mesh.RecalculateBounds();
-        
+
         //MeshFilter = gameObject.AddComponent<MeshFilter>();
         //MeshFilter.mesh = Mesh;
     }
