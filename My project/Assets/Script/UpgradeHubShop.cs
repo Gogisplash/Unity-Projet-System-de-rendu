@@ -9,23 +9,25 @@ public class UpgradeHubShop : MonoBehaviour
     public Text cashText;
     public GameObject player;
     int coins = 0;
-
+    public GameObject hub;
     private HouseSpawn house;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         cashText.text = coins + "$";
-        house = house.GetComponent<HouseSpawn>();
+        house = hub.GetComponentInChildren<HouseSpawn>();
     }
 
     public void buyHouse(int price)
     {
             if (coins > price)
             {
+            
                 InventoryManager.Instance.inventory.GetCoins().RemoveFromStack(price);
-
+                house.Spawn();    
                 Debug.Log("house buyed");
             }
             else
@@ -39,6 +41,7 @@ public class UpgradeHubShop : MonoBehaviour
         if (coins > price)
         {
             InventoryManager.Instance.inventory.GetCoins().RemoveFromStack(price);
+            
 
             Debug.Log("boat buyed");
         }

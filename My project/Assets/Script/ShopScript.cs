@@ -26,7 +26,7 @@ public class ShopScript : MonoBehaviour
         cashText.text = coins + "$";
         boatStat = player.GetComponentInChildren<BoatStat>();
 
-        currentHealth = boatStat.m_health;
+        currentHealth = boatStat.m_maxHealth;
         currentSpeed = boatStat.m_speed;
 
         healthSlider.maxValue = maxHealth;
@@ -38,7 +38,7 @@ public class ShopScript : MonoBehaviour
 
     public void buyHealth(int price)
     {
-        if (currentHealth < maxHealth)
+        if (boatStat.m_maxHealth < maxHealth)
         {
             if (coins > price)
             {
@@ -48,7 +48,9 @@ public class ShopScript : MonoBehaviour
                 AudioManager.instance.PlaySFX("Ruby");
 
                 currentHealth += 5;
-                boatStat.SetHealth(currentHealth);  
+               
+                boatStat.SetMaxHealth(currentHealth);
+                
                 healthSlider.value = currentHealth;
                 Debug.Log("health up");
             }

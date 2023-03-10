@@ -10,13 +10,15 @@ public class BoatStat : MonoBehaviour
     public int m_health;
     public int m_speed;
 
+    public int m_maxHealth = 100;
+
     BoatController controller;
 
     public Slider healthSlider;
     // Start is called before the first frame update
     void Start()
     {
-        healthSlider.maxValue = 100;
+        healthSlider.maxValue = m_maxHealth;
         ExplosiveBarrel.OnExplosion += TakeDamage;
         controller= GetComponent<BoatController>();
         controller.speed = m_speed;
@@ -30,8 +32,12 @@ public class BoatStat : MonoBehaviour
     {
         healthSlider.value = m_health;
         controller.speed = m_speed;
-        //Debug.Log("Vie :" + m_health);
-        //Debug.Log("Speed :" + m_speed);
+
+        if(m_health <= 0)
+        {
+            Death();
+        }
+        
     }
     
 
@@ -48,14 +54,19 @@ public class BoatStat : MonoBehaviour
     {
         m_health -= damage;
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            m_health -= damage;
-        }
     }
 
+    public void SetMaxHealth(int healthUpgrade)
+    {
+        m_health += 10;
+        m_maxHealth = healthUpgrade;
+        healthSlider.maxValue = m_maxHealth;  
+    }
     public void Death()
     {
+        AudioManager.instance.sfxSource.Stop();
+        AudioManager.instance.musicSource.Stop();
+        AudioManager.instance.PlaySFX("Died");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

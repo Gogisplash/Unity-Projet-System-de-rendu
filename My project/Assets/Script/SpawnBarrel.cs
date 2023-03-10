@@ -16,7 +16,7 @@ public class SpawnBarrel : MonoBehaviour
 
     Transform LastSpawnZone;
     Transform NewSpawnZone;
-
+    int barrelAmount = 0;
     public float spawnSpeed;
     float LastSpawn = 0;
     // Start is called before the first frame update
@@ -29,13 +29,14 @@ public class SpawnBarrel : MonoBehaviour
     {
         LastSpawn += Time.deltaTime;
         
-        if (LastSpawn > spawnSpeed)
+        if (LastSpawn > spawnSpeed && barrelAmount < 100)
         {
             Spawn();
         }
     }
     public void Spawn()
     {
+        barrelAmount++;
         LastSpawn = 0;
         NewSpawnZone = spawnPoints[Random.Range(0, spawnPoints.Count)];
         if(LastSpawnZone != null)

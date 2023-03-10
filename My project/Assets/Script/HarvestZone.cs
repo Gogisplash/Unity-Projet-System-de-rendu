@@ -76,7 +76,7 @@ public class HarvestZone : MonoBehaviour
         
         if(Harvesting)
         {
-            harvestingProgresse += 0.1f;
+            harvestingProgresse += 0.3f;
             
         }
         harvestingSlider.SetSlider(harvestingProgresse);

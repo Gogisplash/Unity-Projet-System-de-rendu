@@ -19,7 +19,7 @@ public class HouseSpawn : Singleton<SpawnObjectif>
     // Start is called before the first frame update
     protected override void Start()
     {
-        Spawn();
+
         base.Start();
     }
 
@@ -36,12 +36,8 @@ public class HouseSpawn : Singleton<SpawnObjectif>
         spawnPoints.Remove(NewSpawn);
 
         GameObject instantied = Instantiate(spawning);
-        spawnZones = GetComponentInChildren<SpawnZone>();
-        instantied.transform.position = new Vector3(
-                Random.Range(randomSpawn.position.x - spawnZones.spawnSize.x / 2, randomSpawn.position.x + spawnZones.spawnSize.x / 2),
-                Random.Range(randomSpawn.position.y - spawnZones.spawnSize.y / 2, randomSpawn.position.y + spawnZones.spawnSize.y / 2),
-                Random.Range(randomSpawn.position.z - spawnZones.spawnSize.z / 2, randomSpawn.position.z + spawnZones.spawnSize.z / 2)
-                );
+       
+        instantied.transform.position = new Vector3(randomSpawn.position.x, randomSpawn.position.y, randomSpawn.position.z);
 
         LastSpawn = NewSpawn;
 
