@@ -18,7 +18,9 @@ public class InputGetter : MonoBehaviour
     }
     public bool interact;
     public bool space;
-   
+    public bool escape;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,6 @@ public class InputGetter : MonoBehaviour
        
         interact = Input.GetKey(KeyCode.E);
         space = Input.GetKey(KeyCode.Space);
-
+        escape = Input.GetKey(KeyCode.Escape);
     }
 }

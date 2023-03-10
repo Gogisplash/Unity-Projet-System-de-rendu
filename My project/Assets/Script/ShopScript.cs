@@ -44,7 +44,9 @@ public class ShopScript : MonoBehaviour
             {
                 InventoryManager.Instance.inventory.GetCoins().RemoveFromStack(price);
                 
-                
+                AudioManager.instance.sfxSource.Stop();
+                AudioManager.instance.PlaySFX("Ruby");
+
                 currentHealth += 5;
                 boatStat.SetHealth(currentHealth);  
                 healthSlider.value = currentHealth;
@@ -68,7 +70,7 @@ public class ShopScript : MonoBehaviour
             if (coins > price)
             {
                 InventoryManager.Instance.inventory.GetCoins().RemoveFromStack(price);
-
+                AudioManager.instance.PlaySFX("Ruby");
                 currentSpeed += 10;
                 boatStat.SetSpeed(currentSpeed);
                 speedSlider.value = currentSpeed;

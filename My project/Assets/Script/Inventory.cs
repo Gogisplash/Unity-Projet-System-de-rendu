@@ -21,8 +21,8 @@ public class Inventory : MonoBehaviour
     }
     public void AddToInventory(ItemData itemAdded)
     {
-      
-       foreach (ItemData item in inventory)
+        AudioManager.instance.PlaySFX("Ruby");
+        foreach (ItemData item in inventory)
         {
             if(item.itemName == itemAdded.itemName)
             {
@@ -83,7 +83,7 @@ public class Inventory : MonoBehaviour
         foreach (ItemData i in inventory)
         {
             if (i.itemName == "Gold Coins")
-            {
+            {            
                 coins = i;
             }
         }

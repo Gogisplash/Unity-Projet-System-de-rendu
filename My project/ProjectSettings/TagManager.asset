@@ -6,6 +6,15 @@ TagManager:
   tags:
   - Objectif
   - Character
+  - Area1
+  - Area2
+  - Area3
+  - Area4
+  - Sky
+  - SkyArea1
+  - SkyArea2
+  - SkyArea3
+  - SkyArea4
   layers:
   - Default
   - TransparentFX

@@ -57,8 +57,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Depth: 0
-    - _Magnitude: 0.4
+    - _Magnitude: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Tile: 0
     m_Colors: []
   m_BuildTextureStacks: []

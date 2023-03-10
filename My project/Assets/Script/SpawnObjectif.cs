@@ -12,8 +12,12 @@ public class SpawnObjectif : Singleton<SpawnObjectif>
     [SerializeField]
     private List<Transform> spawnPoints;
 
+    [SerializeField]
+    private SkyManager skyTransform;
+
     SpawnZone spawnZones;
 
+    int previousSpawnZone;
     Transform LastSpawn;
     Transform NewSpawn;
     // Start is called before the first frame update
@@ -30,6 +34,8 @@ public class SpawnObjectif : Singleton<SpawnObjectif>
         {
             spawnPoints.Add(LastSpawn);
 
+            //Debug.Log(skyManager);
+            skyTransform.AreaVisited(LastSpawn.gameObject.tag);
         }
         
         Transform randomSpawn = NewSpawn;

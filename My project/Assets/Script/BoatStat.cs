@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class BoatStat : MonoBehaviour
 {
@@ -28,8 +30,8 @@ public class BoatStat : MonoBehaviour
     {
         healthSlider.value = m_health;
         controller.speed = m_speed;
-        Debug.Log("Vie :" + m_health);
-        Debug.Log("Speed :" + m_speed);
+        //Debug.Log("Vie :" + m_health);
+        //Debug.Log("Speed :" + m_speed);
     }
     
 
@@ -45,5 +47,15 @@ public class BoatStat : MonoBehaviour
     public void TakeDamage(int damage)
     {
         m_health -= damage;
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            m_health -= damage;
+        }
+    }
+
+    public void Death()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

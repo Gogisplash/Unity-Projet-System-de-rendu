@@ -11,12 +11,13 @@ public class ExplosiveBarrel : Interactable
     public ParticleSystem[] explosion;
     void Start()
     {
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public override void Interact()
@@ -26,5 +27,6 @@ public class ExplosiveBarrel : Interactable
         explosion[2].Play();
         base.Interact();
         OnExplosion?.Invoke(15);
+        AudioManager.instance.PlaySFX("Explosion");
     }
 }

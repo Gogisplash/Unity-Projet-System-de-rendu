@@ -38,7 +38,7 @@ public class HarvestZone : MonoBehaviour
     }
     private void Start()
     {
-        Debug.Log(chestData);
+        //Debug.Log(chestData);
         bool inInventory = InventoryManager.Instance.inventory.IsinInventory(chestData.FirstobjectifData);
         chestData.SetStackSize(coinsInside, inInventory);
         
